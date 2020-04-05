@@ -3,16 +3,16 @@
 <div class="container">
   <div class="row">
     <div class="main">
-      <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-vertical-stepper #stepper>
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Input your ldap account</ng-template>
+            <ng-template matStepLabel>Enter your ldap account</ng-template>
             <mat-form-field>
               <mat-label>LDAP Account</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              <input matInput placeholder="LDAP Account" formControlName="firstCtrl" required [(ngModel)]="uid">
             </mat-form-field>
             <div>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <button mat-raised-button color="primary" matStepperNext (click)="onGenerateToken()">Next</button>
             </div>
           </form>
         </mat-step>
@@ -22,12 +22,11 @@
             <label id="example-radio-group-label">Sent confirmation code to your mail address.</label>
             <mat-form-field>
               <mat-label>Please enter the confirmation code</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder=""
-                     required>
+              <input matInput formControlName="secondCtrl" placeholder="" required [(ngModel)]="token">
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <button mat-raised-button color="primary" matStepperNext (click)="onResetPassword()">Next</button>
             </div>
           </form>
         </mat-step>
